@@ -3,7 +3,7 @@ package com.braidsbeautybyangie.paymentservice.service.creditCard.impl;
 import com.braidsbeautybyangie.paymentservice.model.request.CreditCardProcessRequest;
 import com.braidsbeautybyangie.paymentservice.rest.RestCreditCardProcessorAdapter;
 import com.braidsbeautybyangie.paymentservice.service.creditCard.CreditCardProcessorRemoteService;
-import com.braidsbeautybyangie.sagapatternspringboot.aggregates.AppExceptions.CreditCardProcessorUnavailableException;
+import pe.com.gamacommerce.corelibraryservicegamacommerce.aggregates.AppExceptions.CreditCardProcessorUnavailableException;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

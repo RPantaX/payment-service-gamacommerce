@@ -8,8 +8,8 @@ import com.braidsbeautybyangie.paymentservice.model.response.ResponseListPageabl
 import com.braidsbeautybyangie.paymentservice.repository.PaymentRepository;
 import com.braidsbeautybyangie.paymentservice.service.creditCard.CreditCardProcessorRemoteService;
 import com.braidsbeautybyangie.paymentservice.service.payment.PaymentService;
-import com.braidsbeautybyangie.sagapatternspringboot.aggregates.AppExceptions.AppExceptionNotFound;
-import com.braidsbeautybyangie.sagapatternspringboot.aggregates.aggregates.Constants;
+import pe.com.gamacommerce.corelibraryservicegamacommerce.aggregates.AppExceptions.AppExceptionNotFound;
+import pe.com.gamacommerce.corelibraryservicegamacommerce.aggregates.aggregates.Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

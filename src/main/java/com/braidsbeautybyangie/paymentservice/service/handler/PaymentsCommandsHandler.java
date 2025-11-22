@@ -3,14 +3,12 @@ package com.braidsbeautybyangie.paymentservice.service.handler;
 import com.braidsbeautybyangie.paymentservice.model.PaymentType;
 import com.braidsbeautybyangie.paymentservice.model.dto.PaymentDTO;
 import com.braidsbeautybyangie.paymentservice.service.payment.PaymentService;
-import com.braidsbeautybyangie.sagapatternspringboot.aggregates.AppExceptions.CreditCardProcessorUnavailableException;
-import com.braidsbeautybyangie.sagapatternspringboot.aggregates.aggregates.commands.ProcessPaymentCommand;
-import com.braidsbeautybyangie.sagapatternspringboot.aggregates.aggregates.events.PaymentFailedEvent;
-import com.braidsbeautybyangie.sagapatternspringboot.aggregates.aggregates.events.PaymentProcessedEvent;
+import pe.com.gamacommerce.corelibraryservicegamacommerce.aggregates.AppExceptions.CreditCardProcessorUnavailableException;
+import pe.com.gamacommerce.corelibraryservicegamacommerce.aggregates.aggregates.commands.ProcessPaymentCommand;
+import pe.com.gamacommerce.corelibraryservicegamacommerce.aggregates.aggregates.events.PaymentFailedEvent;
+import pe.com.gamacommerce.corelibraryservicegamacommerce.aggregates.aggregates.events.PaymentProcessedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -49,12 +47,7 @@ public class PaymentsCommandsHandler {
     }
 
     private BigDecimal calculateTotalPrice(ProcessPaymentCommand command) {
-        BigDecimal totalPriceProducts = calculateProductsTotal(command);
-        if (command.getReservationCore() == null) {
-            return totalPriceProducts;
-        }
-        BigDecimal totalPriceServices = command.getReservationCore().getTotalPrice();
-        return totalPriceProducts.add(totalPriceServices);
+        return calculateProductsTotal(command);
     }
 
     private BigDecimal calculateProductsTotal(ProcessPaymentCommand command) {
@@ -81,19 +74,11 @@ public class PaymentsCommandsHandler {
     }
 
     private void publishPaymentProcessedEvent(ProcessPaymentCommand command, PaymentDTO paymentDTOSaved, BigDecimal totalPrice) {
-        boolean isService = false;
-        if  (command.getReservationCore() == null) {
-            isService = false;
-        } else {
-            isService = command.getReservationCore().getReservationId() != null;
-        }
-
         PaymentProcessedEvent paymentProcessedEvent = PaymentProcessedEvent.builder()
                 .paymentId(paymentDTOSaved.getPaymentId())
                 .shopOrderId(command.getShopOrderId())
                 .paymentTotalPrice(totalPrice)
                 .isProduct(!command.getProductList().isEmpty())
-                .isService(isService)
                 .build();
         log.info("PaymentProcessedEvent: {}", paymentProcessedEvent);
         try {
@@ -109,7 +94,6 @@ public class PaymentsCommandsHandler {
         PaymentFailedEvent paymentFailedEvent = PaymentFailedEvent.builder()
                 .shopOrderId(command.getShopOrderId())
                 .productList(command.getProductList())
-                .reservationId(command.getReservationCore().getReservationId())
                 .build();
         try {
             log.info("PaymentFailedEvent: {}", paymentFailedEvent);

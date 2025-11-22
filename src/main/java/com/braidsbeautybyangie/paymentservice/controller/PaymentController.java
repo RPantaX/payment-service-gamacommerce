@@ -2,7 +2,7 @@ package com.braidsbeautybyangie.paymentservice.controller;
 
 import com.braidsbeautybyangie.paymentservice.model.dto.PaymentDTO;
 import com.braidsbeautybyangie.paymentservice.service.payment.PaymentService;
-import com.braidsbeautybyangie.sagapatternspringboot.aggregates.aggregates.util.ApiResponse;
+import pe.com.gamacommerce.corelibraryservicegamacommerce.aggregates.aggregates.util.ApiResponse;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import lombok.RequiredArgsConstructor;
