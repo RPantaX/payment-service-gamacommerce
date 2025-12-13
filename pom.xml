@@ -122,6 +122,13 @@
             <artifactId>micrometer-registry-prometheus</artifactId>
             <version>${micrometer.version}</version>
         </dependency>
+        <!-- Stripe Java SDK -->
+        <!-- https://mvnrepository.com/artifact/com.stripe/stripe-java -->
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>27.0.0</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -158,6 +165,7 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+
     </repositories>
     <build>
         <plugins>

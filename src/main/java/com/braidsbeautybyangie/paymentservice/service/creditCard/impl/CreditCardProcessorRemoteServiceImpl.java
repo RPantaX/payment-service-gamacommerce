@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
+/*
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -32,3 +32,4 @@ public class CreditCardProcessorRemoteServiceImpl implements CreditCardProcessor
         }
     }
 }
+*/

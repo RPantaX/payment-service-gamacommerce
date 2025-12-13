@@ -48,3 +48,11 @@
 #    instance-id: ${spring.application.name}:${random.value}
 #
 #
+stripe:
+  secret:
+    key: sk_test_51SdYNAHMrevbTo0hluIqJLsFsNxAbxOYy4qQquw6LvsTmKsiK13jSLUdf6ExMeCqMlQAKXx6Jz4iDKF134NB5Jh8007xjKWxWe
+  publishable:
+    key: pk_test_51SdYNAHMrevbTo0hB34XndyOb0O80ZOJXhsRTJlYKKkVnS4s1U4ZkWZV8H0eMPaJLENRpkQ76Qt7jANtFyzRtI0200LaYgs2k7
+  currency: pen
+  webhook:
+    secret: whsec_06e4671138f44db80c6b6a6ec8c72dcf4b2771776f828106d1bc2f65aec7e611
